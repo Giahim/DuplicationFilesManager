@@ -58,7 +58,16 @@ namespace DuplicationFilesManager
 
         public void Delete()
         {
-            Microsoft.VisualBasic.FileIO.FileSystem.DeleteFile(fileSetting.FullName, Microsoft.VisualBasic.FileIO.UIOption.OnlyErrorDialogs, Microsoft.VisualBasic.FileIO.RecycleOption.SendToRecycleBin);
+            try
+            {
+                if (fileSetting.Exists)
+                    Microsoft.VisualBasic.FileIO.FileSystem.DeleteFile(fileSetting.FullName, Microsoft.VisualBasic.FileIO.UIOption.OnlyErrorDialogs, Microsoft.VisualBasic.FileIO.RecycleOption.SendToRecycleBin);
+
+            }
+            catch
+            {
+
+            }
         }
 
         /// <summary>

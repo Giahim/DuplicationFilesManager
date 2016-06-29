@@ -65,6 +65,7 @@ namespace DuplicationFilesManager
                         break;
                 }
                 IsScaning = false;
+                MainForm.SetStatus("扫描完成...");
                 MainForm.SetButtonText();
             });
             
@@ -92,6 +93,9 @@ namespace DuplicationFilesManager
                 {
                     foreach (var existfile in existFiles)
                     {
+                        if (!IsScaning)
+                            return;
+
                         if (duplicationFiles.Contains(existfile))
                             continue;
 
@@ -113,6 +117,9 @@ namespace DuplicationFilesManager
 
             foreach (var item in System.IO.Directory.GetDirectories(path))
             {
+                if (!IsScaning)
+                    return;
+
                 GetPathFile(item);
             }
         }
